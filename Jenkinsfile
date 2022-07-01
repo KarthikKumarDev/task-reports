@@ -3,9 +3,10 @@ pipeline {
      stages {
         stage("Build") {
             steps {
-                sh "sudo yum install npm"
-                sh "sudo yum npm install"
+                 nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
+                    sh "sudo yum npm install"
                 sh "sudo yum npm run build"
+                }   
             }
         }
     }
