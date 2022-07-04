@@ -5,7 +5,7 @@ pipeline {
         stage('Update browser') {
             steps {
                 nodejs(nodeJSInstallationName: 'sample') {
-                    sh 'npx browserslist@latest --update-db'
+                    sh 'npm i caniuse-lite browserslist'
                 }
             }
         }
