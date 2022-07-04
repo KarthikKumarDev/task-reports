@@ -1,12 +1,26 @@
 pipeline {
-     agent any
-     stages {
-        stage("Build") {
+    agent any
+
+    stages {
+        stage('Update browser') {
             steps {
-                 nodejs(nodeJSInstallationName: 'Node 14.x', configId: '<config-file-provider-id>') {
-                    sh "sudo yum npm install"
-                sh "sudo yum npm run build"
-                }   
+                nodejs(nodeJSInstallationName: 'sample') {
+                    sh 'npx browserslist@latest --update-db'
+                }
+            }
+        }
+        stage('Install') {
+            steps {
+                nodejs(nodeJSInstallationName: 'sample') {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                nodejs(nodeJSInstallationName: 'sample') {
+                    sh 'npm run build'
+                }
             }
         }
     }
