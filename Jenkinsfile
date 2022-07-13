@@ -5,21 +5,21 @@ pipeline {
         stage('Update browser') {
             steps {
                 nodejs(nodeJSInstallationName: 'sample') {
-                    sh 'npx browserslist@latest --update-db'
+                    bat 'npx browserslist@latest --update-db'
                 }
             }
         }
         stage('Install') {
             steps {
                 nodejs(nodeJSInstallationName: 'sample') {
-                    sh 'npm install'
+                    bat 'npm install'
                 }
             }
         }
         stage('Build') {
             steps {
                 nodejs(nodeJSInstallationName: 'sample') {
-                    sh 'npm run build'
+                    bat 'npm run build'
                 }
             }
         }
